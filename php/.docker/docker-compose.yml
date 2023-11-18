@@ -1,0 +1,32 @@
+version: "3"
+services:
+  mysql:
+    container_name: ${SERVICE_PREFIX}mysql
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    ports:
+      - "${MYSQL_LOCAL_PORT}:3306"
+  mongo:
+    container_name: ${SERVICE_PREFIX}mongo
+    build:
+      context: ./mongodb
+      dockerfile: Dockerfile
+    ports:
+      - "${MONGO_LOCAL_PORT}:27017"
+  httpd:
+    container_name: ${SERVICE_PREFIX}httpd
+    build:
+      context: ./httpd
+      dockerfile: Dockerfile
+    ports:
+      - "${PHPMYADMIN_LOCAL_PORT}:3131"
+      - "${MONGO_GUI_LOCAL_PORT}:3232"
+      - "${WEBAPP_LOCAL_PORT}:8090"
+    links:
+      - "mysql"
+      - "mongo"
+    volumes:
+      - ..:/var/www/html/project:rw
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

@@ -1,0 +1,14 @@
+version: '3'
+services:
+  web:
+    container_name: ${SERVICE_PREFIX}web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '${CLIENT_APP_LOCAL_PORT}:3000'
+      - '${HMR_PORT}:3001'
+    volumes:
+      - ..:/app:rw
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
