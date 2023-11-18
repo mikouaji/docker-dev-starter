@@ -25,3 +25,7 @@ To use a proper version of `node`, `php`, `mysql`, `mongo` you just need to chan
 You don't have to use both DB setups that are defined in `php` and also using a DB config from `php` inside `node` will work fine.
 
 Most of that stuff can be changed and commented out.
+
+## More
+
+Feel free to use and ask any questions
